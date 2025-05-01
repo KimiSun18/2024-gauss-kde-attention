@@ -16,7 +16,7 @@
 
 <p align="center">
   <img src="media/vid.gif" alt="animated" width="250"/>
-  <img src="media/nb-modes.png" width="250"/>
+  <img src="media/nb-modes.png" width="350"/>
 </p>
 
 
