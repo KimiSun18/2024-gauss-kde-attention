@@ -7,15 +7,17 @@ plt.rcParams.update({
     "font.family": "serif"
 })
 
-b = 300
+b = 100
 n = 10000
 
 # Define the function to plot
-def function(x):
-    return np.sqrt(b) * np.exp(-b**(-3/2) * n**2 * x**2 * np.exp(-x**2 * 0.5))
+def function(t):
+    # ß = 300 -> -3.5
+    # ß = 100 -> -2 
+    return np.sqrt(b) * np.exp(-b**(-3/2) * n * t**2 * np.exp(-t**2/2) - 2) 
 
 # Generate x values
-x_values = np.linspace(-0.025, 0.025, 500)
+x_values = np.linspace(-5, 5, 500)
 
 # Compute y values for the function
 y_values = function(x_values)
@@ -24,14 +26,17 @@ y_values = function(x_values)
 interval_min = -np.sqrt(2 * np.log(n) - np.log(b))
 interval_max = np.sqrt(2 * np.log(n) - np.log(b))
 
+print(interval_min)
+print(interval_max)
+
 # Create the plot
 plt.figure(figsize=(10, 6))
 
 # Plot the function using Mathematica Red color
-plt.plot(x_values, y_values, color=(0.950, 0.203, 0.215), linewidth=2, label=r'$f(x) = \sqrt{b} \cdot e^{-b^{-1.5} \cdot n^2 \cdot x^2 \cdot e^{-0.5 x^2}}$')
+plt.plot(x_values, y_values, color='blue', alpha=0.75, linewidth=2, label=r'$f(x) = \sqrt{b} \cdot e^{-b^{-1.5} \cdot n^2 \cdot x^2 \cdot e^{-0.5 x^2}}$')
 
 # Highlight the interval with a shaded region
-plt.axvspan(interval_min, interval_max, color='lightblue', alpha=0.3, label=r'$\left[-\sqrt{2 \log n - \log b}, \sqrt{2 \log n - \log b}\right]$')
+plt.axvspan(interval_min, interval_max, color='lightgray', alpha=0.3, label=r'$\left[-\sqrt{2 \log n - \log b}, \sqrt{2 \log n - \log b}\right]$')
 
 # Adjust the axis limits so the curve fits exactly within the frame
 plt.xlim(x_values.min(), x_values.max())
